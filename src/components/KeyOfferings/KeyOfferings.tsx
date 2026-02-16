@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Grid } from 'lucide-react';
 
 const tabs = ['Portals', 'Procurement', 'Email & File Sharing'];
 
@@ -34,7 +35,7 @@ export default function KeyOfferings() {
     <section className="key-offerings" aria-labelledby="key-offerings">
       <div className="container key-grid">
         <div className="offerings-panel" aria-labelledby="key-offerings">
-          <h2 id="key-offerings">Key Offerings</h2>
+          <h2 id="key-offerings"><Grid className="heading-icon" aria-hidden="true" /> Key Offerings</h2>
           <div role="tablist" aria-label="Key Offerings Tabs" className="tabs">
             {tabs.map((t, i) => (
               <button

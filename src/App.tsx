@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Ministry from './pages/Ministry';
@@ -30,15 +30,36 @@ import { AccessibilityProvider } from './context/AccessibilityContext';
 import AccessibilityToolbar from './components/AccessibilityToolbar/AccessibilityToolbar';
 
 export default function App() {
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const target = e.currentTarget as HTMLAnchorElement;
+      const href = target.getAttribute('href') || '';
+      if (!href.startsWith('#')) return;
+      const id = href.slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // ensure focus for screen reader users
+        (el as HTMLElement).setAttribute('tabindex', '-1');
+        (el as HTMLElement).focus({ preventScroll: true });
+      }
+    };
+
+    const links = Array.from(document.querySelectorAll('a.skip-link, a.skip-inline'));
+    links.forEach((a) => a.addEventListener('click', handler));
+    return () => links.forEach((a) => a.removeEventListener('click', handler));
+  }, []);
+
   return (
     <>
       <AccessibilityProvider>
-        <a className="skip-link" href="#primarynav">
-          Skip to navigation
-        </a>
-        <a className="skip-link" href="#maincontent">
-          Skip to content
-        </a>
+      <a className="skip-link" href="#primarynav">
+        Skip to navigation
+      </a>
+      <a className="skip-link" href="#about-ministry">
+        Skip to content
+      </a>
         <AccessibilityToolbar />
         <Routes>
         <Route path="/" element={<Home />} />

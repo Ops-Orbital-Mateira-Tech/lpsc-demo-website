@@ -1,4 +1,5 @@
 import React from 'react';
+import { FileText, Link as LinkIcon, Info } from 'lucide-react';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import HeroCarousel from '../components/HeroCarousel/HeroCarousel';
@@ -16,7 +17,7 @@ export default function Home() {
         <AnnouncementsTicker />
         <section aria-labelledby="about-ministry" className="about-ministry">
           <div className="container">
-            <h2 id="about-ministry">About LPSC</h2>
+            <h2 id="about-ministry"> About LPSC</h2>
             <p>
               Liquid Propulsion Systems Centre (LPSC) is the lead Centre for development and realization of
               earth-to-orbit advanced propulsion stages for Launch Vehicles and also the in-space propulsion
@@ -38,14 +39,14 @@ export default function Home() {
           <div className="container recent-and-links-inner">
             <div className="recent-column">
               <h2 id="recent-docs">
-                <span className="heading-icon" aria-hidden="true">📄</span> Recent Documents
+                <FileText className="heading-icon" aria-hidden="true" /> Recent Documents
               </h2>
               <DocumentCards />
             </div>
 
             <div className="important-links" role="region" aria-labelledby="important-links">
               <h2 id="important-links">
-                <span className="heading-icon" aria-hidden="true">🔗</span> Important Links
+                <LinkIcon className="heading-icon" aria-hidden="true" /> Important Links
               </h2>
               <ul>
                 <li>

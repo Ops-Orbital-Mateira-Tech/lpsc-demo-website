@@ -93,17 +93,59 @@ html, body, #root {
 .icon-btn:focus { outline:3px solid rgba(21,156,228,0.35); }
 .mini-logo { height:48px; width:auto; }
 
+/* Header text-size controls */
+.header-text-controls { display:flex; align-items:center; gap:0.5rem; }
+.text-size-controls { display:flex; gap:0.35rem; align-items:center; }
+.text-size-btn { background:transparent; border:1px solid rgba(0,0,0,0.08); padding:0.25rem 0.5rem; border-radius:4px; font-weight:700; cursor:pointer; color:var(--text-color); }
+.text-size-btn:hover { background:var(--color-muted); transform:translateY(-2px); }
+.text-size-btn.active { background:var(--color-primary); color:#fff; border-color:var(--color-primary); }
+.skip-inline { margin-left:0.6rem; text-decoration:none; color:var(--text-color); font-weight:600; }
+.skip-inline:focus, .skip-inline:hover { text-decoration:underline; color:var(--color-primary); }
+
 
 .main-nav { background: #fff; border-top:1px solid var(--color-muted); border-bottom:1px solid var(--color-muted); }
 .nav-inner { display:flex; align-items:center; }
 .nav-list { list-style:none; margin:0; padding:0; display:flex; gap:1rem; align-items:center; }
 .nav-list li { position:relative; }
-.nav-list a, .nav-list button { text-decoration:none; color:var(--text-color); background:none; border:none; padding:0.9rem 0.5rem; cursor:pointer; font-weight:600; }
+.nav-list a, .nav-list button { text-decoration:none; color:var(--text-color); background:none; border:none; padding:0.5rem 0.5rem; cursor:pointer; font-weight:600; font-size:0.857rem; line-height:1.2; display:inline-flex; align-items:center; gap:0.4rem; }
 .nav-list a.active { color:var(--color-primary); border-bottom:3px solid var(--color-primary); padding-bottom:0.6rem; }
-.has-sub .submenu { display:none; position:absolute; top:100%; left:0; background:white; border:1px solid var(--color-muted); padding:0.5rem; min-width:200px; z-index:200; }
-.has-sub:hover .submenu, .has-sub:focus-within .submenu { display:block; }
-.submenu li { padding:0; margin:0; }
-.submenu a { display:block; padding:0.5rem 0.75rem; color:var(--text-color); }
+.has-sub .submenu { position:absolute; top:100%; left:0; background:white; border:1px solid var(--color-muted); padding:0.5rem; min-width:200px; z-index:200; }
+.has-sub .submenu {
+  /* keep in flow but hidden for animation */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid var(--color-muted);
+  padding: 0.35rem;
+  min-width: 200px;
+  z-index: 200;
+  list-style: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+.has-sub:hover .submenu, .has-sub:focus-within .submenu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.has-sub[aria-expanded="true"] .submenu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.submenu li { padding: 0; margin: 0; list-style: none; }
+.submenu a { display: block; padding: 0.5rem 0.75rem; color: var(--text-color); text-decoration: none; border-radius: 4px; }
+.submenu a:hover, .submenu a:focus { background: var(--color-muted); color: var(--text-color); outline: none; }
 
 .hero { background: var(--color-muted); padding: 1rem 0; }
 .hero-inner { position: relative; overflow: hidden; padding: 1rem 0; }
@@ -169,17 +211,19 @@ html, body, #root {
 .important-links a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
 /* Document cards 2x2 grid */
 .document-cards { display:grid; grid-template-columns: repeat(2, 1fr); gap:1rem; }
-.doc-card { display:flex; background:#fff; border:1px solid var(--color-muted); border-radius:6px; overflow:hidden; }
-.doc-content { padding:1rem; flex:1; }
-.doc-content h3 { margin:0 0 0.4rem 0; font-size:1rem; color:var(--text-color); }
-.doc-content p { margin:0; color:#444; font-size:0.95rem; }
-.doc-link { display:flex; align-items:stretch; }
-.doc-link-bar { display:flex; align-items:center; justify-content:center; padding:0 0.6rem; background:var(--color-primary); color:#fff; min-width:44px; }
+.doc-card { position: relative; display:block; background:#fff; border:1px solid var(--color-muted); border-radius:6px; overflow:hidden; padding:0.9rem; gap:0.5rem; transition: transform 180ms ease, box-shadow 180ms ease; }
+.doc-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+.doc-content { padding-right: 56px; /* space for arrow */ }
+.doc-content h3 { margin:0 0 0.3rem 0; font-size:0.9rem; color:var(--text-color); line-height:1.2; }
+.doc-content p { margin:0; color:#444; font-size:0.8rem; line-height:1.35; }
+.doc-link { position: absolute; right: 10px; bottom: 10px; display:flex; align-items:center; }
+.doc-link-bar { display:flex; align-items:center; justify-content:center; padding:0.25rem; background:transparent; color:var(--color-primary); min-width:36px; height:36px; border-radius:4px; transition: transform 160ms ease; }
+.doc-link:hover .doc-link-bar, .doc-card:hover .doc-link-bar { transform: translateX(6px); }
 
 /* Key offerings/whats-new remain above */
 .recent-and-links-inner { display:grid; grid-template-columns: 1fr 320px; gap:1rem; align-items:start; margin-top:1rem; }
 .recent-column h2, .important-links h2 { margin-top:0; color:var(--color-primary); display:flex; align-items:center; gap:0.5rem; font-weight:700; }
-.heading-icon { display:inline-flex; width:34px; height:34px; align-items:center; justify-content:center; font-size:18px; color:var(--color-primary); background:transparent; }
+.heading-icon { display:inline-flex; width:32px; height:32px; align-items:center; justify-content:center; color:var(--color-primary); background:transparent; vertical-align:middle; margin-right:0.5rem; }
 .important-links { border:1px solid var(--color-muted); padding:1rem; border-radius:6px; background:#fff; }
 .important-links ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.6rem; }
 .important-links a { text-decoration:none; color:var(--text-color); padding:0.6rem; display:flex; justify-content:space-between; align-items:center; border-radius:4px; border-bottom:1px solid #f2f2f2; }
@@ -198,8 +242,16 @@ html, body, #root {
 .social-grid .card { background:white; border:1px solid var(--color-muted); padding:1rem; border-radius:6px; min-height:120px; }
 
 .site-footer { background: var(--color-primary); color: #fff; padding:2rem 0; margin-top:2rem; }
-.footer-inner { display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; }
-.copyright { background: #0b423b; color:#cfeeea; padding:0.75rem; text-align:center; }
+.footer-inner { display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; flex-wrap:wrap; }
+.footer-column { flex: 1 1 220px; min-width:180px; margin-bottom:0.5rem; }
+.footer-column h3 { margin-top:0; color:#fff; font-size:1rem; display:flex; align-items:center; gap:0.5rem; }
+.footer-column ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0.4rem; }
+.footer-column a { color: #e6f6f3; text-decoration:none; }
+.footer-column a:hover, .footer-column a:focus { text-decoration:underline; color:#fff; }
+.footer-social .social-icons { display:flex; gap:0.5rem; margin-top:0.4rem; }
+.footer-social .social { display:inline-flex; width:36px; height:36px; align-items:center; justify-content:center; background:rgba(255,255,255,0.07); border-radius:6px; color:#fff; transition: transform 140ms ease, background 140ms ease; }
+.footer-social .social:hover { transform: translateY(-4px); background: rgba(255,255,255,0.12); }
+.copyright { background: #0b423b; color:#cfeeea; padding:0.75rem; text-align:center; width:100%; margin-top:1rem; border-top:1px solid rgba(255,255,255,0.04); }
 
 /* Ensure footer links have sufficient contrast on primary background */
 .site-footer a { color: #ffffff; text-decoration: underline; }
@@ -209,4 +261,73 @@ html, body, #root {
   .header-inner { flex-direction:column; align-items:flex-start; }
   .about-ministry .cards { flex-direction:column; }
 }
+
+/* Accessibility typography adjustments applied via classes on <html> */
+html.a11y-legible, html.a11y-legible body, html.a11y-legible * {
+  /* Use a highly legible system stack */
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Increased line-height */
+html.a11y-line-height body, html.a11y-line-height p, html.a11y-line-height li, html.a11y-line-height h1,
+html.a11y-line-height h2, html.a11y-line-height h3, html.a11y-line-height h4, html.a11y-line-height h5, html.a11y-line-height h6,
+html.a11y-line-height .doc-content, html.a11y-line-height .important-links, html.a11y-line-height .offerings-panel {
+  line-height: 1.9 !important;
+}
+
+/* Letter-spacing options */
+html.a11y-letterspacing-normal body, html.a11y-letterspacing-normal p, html.a11y-letterspacing-normal li, html.a11y-letterspacing-normal a,
+html.a11y-letterspacing-normal h1, html.a11y-letterspacing-normal h2, html.a11y-letterspacing-normal h3, html.a11y-letterspacing-normal h4, html.a11y-letterspacing-normal h5, html.a11y-letterspacing-normal h6 {
+  letter-spacing: 0 !important;
+  word-spacing: 0 !important;
+}
+html.a11y-letterspacing-wide body, html.a11y-letterspacing-wide p, html.a11y-letterspacing-wide li, html.a11y-letterspacing-wide a,
+html.a11y-letterspacing-wide h1, html.a11y-letterspacing-wide h2, html.a11y-letterspacing-wide h3, html.a11y-letterspacing-wide h4, html.a11y-letterspacing-wide h5, html.a11y-letterspacing-wide h6 {
+  /* Wide: letter-spacing = 0.06em (~0.96px at 16px), word-spacing = 0.20em */
+  letter-spacing: 0.06em !important;
+  word-spacing: 0.20em !important;
+}
+html.a11y-letterspacing-widest body, html.a11y-letterspacing-widest p, html.a11y-letterspacing-widest li, html.a11y-letterspacing-widest a,
+html.a11y-letterspacing-widest h1, html.a11y-letterspacing-widest h2, html.a11y-letterspacing-widest h3, html.a11y-letterspacing-widest h4, html.a11y-letterspacing-widest h5, html.a11y-letterspacing-widest h6 {
+  /* Widest: letter-spacing = 0.12em (~1.92px at 16px), word-spacing = 0.36em */
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.36em !important;
+}
+
+/* Text justification toggle */
+html.a11y-text-justify p, html.a11y-text-justify li, html.a11y-text-justify .doc-content, html.a11y-text-justify .offerings-panel {
+  text-align: justify !important;
+}
+
+/* Ensure controls and inputs inherit legible font and spacing */
+html.a11y-legible input, html.a11y-legible textarea, html.a11y-legible button, html.a11y-legible select {
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Make sure headings scale nicely with font-size changes */
+html.a11y-font-large h1, html.a11y-font-large h2, html.a11y-font-large h3, html.a11y-font-large h4, html.a11y-font-large h5, html.a11y-font-large h6 {
+  line-height: 1.2;
+}
+
+/* Tooltips when enabled (site-wide). Elements must have `data-tooltip` attribute. */
+html.a11y-tooltips [data-tooltip]:hover::after,
+html.a11y-tooltips [data-tooltip]:focus::after,
+html.a11y-tooltips [data-tooltip]:focus-within::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  transform: translateY(-8px);
+  z-index: 999999;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* Ensure tooltip placement inside toolbar doesn't get clipped */
+.a11y-panel [data-tooltip] { position: relative; }
 

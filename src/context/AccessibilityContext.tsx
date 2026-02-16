@@ -12,6 +12,12 @@ type Prefs = {
   grayscale: boolean;
   magnifier: boolean;
   announceDynamic: boolean;
+  legibleFont?: boolean;
+  cursorLarge?: boolean;
+  increasedLineHeight?: boolean;
+  textAlignJustify?: boolean;
+  letterSpacing?: 'normal'|'wide'|'widest';
+  tooltips?: boolean;
 };
 
 type ContextType = {
@@ -32,6 +38,14 @@ const defaultPrefs: Prefs = {
   grayscale: false,
   magnifier: false,
   announceDynamic: true
+  ,
+  legibleFont: false,
+  cursorLarge: false,
+  increasedLineHeight: false,
+  textAlignJustify: false
+  ,
+  letterSpacing: 'normal',
+  tooltips: false
 };
 
 const AccessibilityContext = createContext<ContextType>({
@@ -70,8 +84,72 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
     html.classList.toggle('a11y-underline-links', prefs.underlineLinks);
     html.classList.toggle('a11y-grayscale', prefs.grayscale);
     html.classList.toggle('a11y-magnifier', prefs.magnifier);
+    html.classList.toggle('a11y-legible', !!prefs.legibleFont);
+    html.classList.toggle('a11y-cursor-large', !!prefs.cursorLarge);
+    html.classList.toggle('a11y-line-height', !!prefs.increasedLineHeight);
+    html.classList.toggle('a11y-text-justify', !!prefs.textAlignJustify);
+    html.classList.remove('a11y-letterspacing-normal','a11y-letterspacing-wide','a11y-letterspacing-widest');
+    html.classList.add(`a11y-letterspacing-${prefs.letterSpacing}`);
+    html.classList.toggle('a11y-tooltips', !!prefs.tooltips);
     document.documentElement.lang = prefs.lang;
   }, [prefs]);
+
+  // Magnifier: update CSS variables on mouse move when magnifier is enabled
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      const html = document.documentElement;
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      html.style.setProperty('--mx', `${x}%`);
+      html.style.setProperty('--my', `${y}%`);
+      // cursor overlay position
+      const cursorEl = document.getElementById('a11y-cursor-overlay');
+      if (cursorEl) {
+        (cursorEl as HTMLElement).style.left = `${e.clientX}px`;
+        (cursorEl as HTMLElement).style.top = `${e.clientY}px`;
+      }
+    };
+    if (prefs.magnifier || prefs.cursorLarge) {
+      window.addEventListener('mousemove', onMove);
+    } else {
+      window.removeEventListener('mousemove', onMove);
+      document.documentElement.style.removeProperty('--mx');
+      document.documentElement.style.removeProperty('--my');
+      const cursorEl = document.getElementById('a11y-cursor-overlay');
+      if (cursorEl && cursorEl.parentNode) cursorEl.parentNode.removeChild(cursorEl);
+    }
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+    };
+  }, [prefs.magnifier, prefs.cursorLarge]);
+
+  // Manage cursor overlay element when cursorLarge enabled
+  useEffect(() => {
+    if (prefs.cursorLarge) {
+      let el = document.getElementById('a11y-cursor-overlay') as HTMLElement | null;
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'a11y-cursor-overlay';
+        el.setAttribute('aria-hidden', 'true');
+        el.style.position = 'fixed';
+        el.style.width = '48px';
+        el.style.height = '48px';
+        el.style.borderRadius = '0';
+        el.style.background = 'transparent';
+        el.style.pointerEvents = 'none';
+        el.style.transform = 'translate(-10%,-10%) scale(1)';
+        el.style.zIndex = '2147483647';
+        // Use the cursor SVG from public assets for the overlay
+        el.innerHTML = `<img src="/images/svg/cursor.svg" alt="" aria-hidden="true" />`;
+        // subtle drop shadow for visibility
+        el.style.filter = 'drop-shadow(0 4px 10px rgba(0,0,0,0.25))';
+        document.body.appendChild(el);
+      }
+    } else {
+      const el = document.getElementById('a11y-cursor-overlay');
+      if (el && el.parentNode) el.parentNode.removeChild(el);
+    }
+  }, [prefs.cursorLarge]);
 
   // Announcer element
   useEffect(() => {

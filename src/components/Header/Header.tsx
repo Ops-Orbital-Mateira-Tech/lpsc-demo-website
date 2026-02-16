@@ -1,14 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Globe, Type, Contrast } from 'lucide-react';
+import React, { useEffect, useRef, useState } from "react";
+import { useAccessibility } from "../../context/AccessibilityContext";
+import { NavLink } from "react-router-dom";
+import { Globe, Type, Contrast, ChevronDown } from "lucide-react";
 
 export default function Header() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [lang, setLang] = useState<'en'|'hi'>('en');
+  const [lang, setLang] = useState<"en" | "hi">("en");
   const navRef = useRef<HTMLElement | null>(null);
+  const { prefs, setPref } = useAccessibility();
 
   useEffect(() => {
-    document.documentElement.lang = lang === 'en' ? 'en' : 'hi';
+    document.documentElement.lang = lang === "en" ? "en" : "hi";
   }, [lang]);
 
   const toggleMenu = (i: number) => {
@@ -16,15 +18,17 @@ export default function Header() {
   };
 
   const onMenuKeyDown = (e: React.KeyboardEvent, i: number) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       toggleMenu(i);
-    } else if (e.key === 'Escape') {
+    } else if (e.key === "Escape") {
       setOpenIndex(null);
-    } else if (e.key === 'ArrowDown') {
+    } else if (e.key === "ArrowDown") {
       e.preventDefault();
       setOpenIndex(i);
-      const submenu = document.querySelector<HTMLAnchorElement>(`.submenu[data-for=\"${i}\"] a`);
+      const submenu = document.querySelector<HTMLAnchorElement>(
+        `.submenu[data-for=\"${i}\"] a`,
+      );
       submenu?.focus();
     }
   };
@@ -32,10 +36,17 @@ export default function Header() {
     <header className="site-header" role="banner">
       <div className="topbar container">
         <div className="branding">
-          <img src="/images/Emblem.png" alt="Government Emblem" className="emblem" />
+          <img
+            src="/images/Emblem.png"
+            alt="Government Emblem"
+            className="emblem"
+          />
           <img src="/images/LPSC-Logo.png" alt="LPSC logo" className="logo" />
           <div className="title">
-            <h1 className="sr-only">Liquid Propulsion Systems Centre — Indian Space Research Organisation</h1>
+            <h1 className="sr-only">
+              Liquid Propulsion Systems Centre — Indian Space Research
+              Organisation
+            </h1>
             <div className="org">Liquid Propulsion Systems Centre</div>
             <div className="dept">Indian Space Research Organisation</div>
           </div>
@@ -45,40 +56,103 @@ export default function Header() {
           <label htmlFor="site-search" className="sr-only">
             Search the site
           </label>
-          <input id="site-search" name="q" type="search" placeholder="Search..." aria-label="Search the site" />
-          <button aria-label="Search" className="search-btn">🔍</button>
+          <input
+            id="site-search"
+            name="q"
+            type="search"
+            placeholder="Search..."
+            aria-label="Search the site"
+          />
+          <button aria-label="Search" className="search-btn">
+            🔍
+          </button>
         </div>
 
         <div className="access-and-logos">
           <div className="right-logos" aria-hidden="true">
-            <img src="/images/DigitalIndia.png" alt="Digital India logo" className="mini-logo" />
+            <img
+              src="/images/DigitalIndia.png"
+              alt="Digital India logo"
+              className="mini-logo"
+            />
           </div>
 
-          <div className="header-icons">
-            <button className="icon-btn" aria-label="Language">
-              <Globe size={18} />
-            </button>
-            <button className="icon-btn" aria-label="Text size">
-              <Type size={18} />
-            </button>
-            <button className="icon-btn" aria-label="Accessibility options">
-              <Contrast size={18} />
-            </button>
+          <div
+            className="header-icons header-text-controls"
+            aria-hidden="false"
+          >
+            <div
+              className="text-size-controls"
+              role="group"
+              aria-label="Text size controls"
+            >
+              <button
+                className={`text-size-btn ${
+                  prefs.fontSize === "large" ? "active" : ""
+                }`}
+                aria-pressed={prefs.fontSize === "large"}
+                aria-label="Increase text size"
+                onClick={() => setPref("fontSize", "large")}
+              >
+                A+
+              </button>
+              <button
+                className={`text-size-btn ${
+                  prefs.fontSize === "normal" ? "active" : ""
+                }`}
+                aria-pressed={prefs.fontSize === "normal"}
+                aria-label="Default text size"
+                onClick={() => setPref("fontSize", "normal")}
+              >
+                A
+              </button>
+              <button
+                className={`text-size-btn ${
+                  prefs.fontSize === "small" ? "active" : ""
+                }`}
+                aria-pressed={prefs.fontSize === "small"}
+                aria-label="Decrease text size"
+                onClick={() => setPref("fontSize", "small")}
+              >
+                A-
+              </button>
+            </div>
+
+            <a className="skip-inline" href="#about-ministry" style={{fontSize: '0.7rem'}}>
+              Skip to main content
+            </a>
           </div>
         </div>
       </div>
 
-      <nav id="primarynav" ref={navRef} className="main-nav" role="navigation" aria-label="Primary navigation">
+      <nav
+        id="primarynav"
+        ref={navRef}
+        className="main-nav"
+        role="navigation"
+        aria-label="Primary navigation"
+      >
         <div className="container nav-inner">
           <ul className="nav-list">
             <li>
-              <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : '')}>
+              <button
+                aria-label="Home"
+                onClick={() => (window.location.href = "/")}
+              >
                 Home
-              </NavLink>
+              </button>
             </li>
 
             <li className="has-sub" aria-expanded={openIndex === 0}>
-              <button aria-haspopup="true" aria-expanded={openIndex === 0} onClick={() => toggleMenu(0)} onKeyDown={(e) => onMenuKeyDown(e, 0)}>About Us ▾</button>
+              <button
+                aria-haspopup="true"
+                aria-expanded={openIndex === 0}
+                onClick={() => toggleMenu(0)}
+                onKeyDown={(e) => onMenuKeyDown(e, 0)}
+              >
+                <span>About Us</span>
+                <ChevronDown size={14} aria-hidden="true" />
+              </button>
               <ul className="submenu" role="menu" data-for="0">
                 <li role="none">
                   <NavLink to="/about/about-lpsc" role="menuitem">
@@ -109,7 +183,15 @@ export default function Header() {
             </li>
 
             <li className="has-sub" aria-expanded={openIndex === 1}>
-              <button aria-haspopup="true" aria-expanded={openIndex === 1} onClick={() => toggleMenu(1)} onKeyDown={(e) => onMenuKeyDown(e, 1)}>Research ▾</button>
+              <button
+                aria-haspopup="true"
+                aria-expanded={openIndex === 1}
+                onClick={() => toggleMenu(1)}
+                onKeyDown={(e) => onMenuKeyDown(e, 1)}
+              >
+                <span>Research</span>
+                <ChevronDown size={14} aria-hidden="true" />
+              </button>
               <ul className="submenu" role="menu" data-for="1">
                 <li role="none">
                   <NavLink to="/research/introduction" role="menuitem">
@@ -130,20 +212,37 @@ export default function Header() {
             </li>
 
             <li className="has-sub" aria-expanded={openIndex === 2}>
-              <button aria-haspopup="true" aria-expanded={openIndex === 2} onClick={() => toggleMenu(2)} onKeyDown={(e) => onMenuKeyDown(e, 2)}>Technologies ▾</button>
+              <button
+                aria-haspopup="true"
+                aria-expanded={openIndex === 2}
+                onClick={() => toggleMenu(2)}
+                onKeyDown={(e) => onMenuKeyDown(e, 2)}
+              >
+                <span>Technologies</span>
+                <ChevronDown size={14} aria-hidden="true" />
+              </button>
               <ul className="submenu" role="menu" data-for="2">
                 <li role="none">
-                  <NavLink to="/technologies/propulsion-systems" role="menuitem">
+                  <NavLink
+                    to="/technologies/propulsion-systems"
+                    role="menuitem"
+                  >
                     Propulsion Systems
                   </NavLink>
                 </li>
                 <li role="none">
-                  <NavLink to="/technologies/advanced-propulsion-systems" role="menuitem">
+                  <NavLink
+                    to="/technologies/advanced-propulsion-systems"
+                    role="menuitem"
+                  >
                     Advanced Propulsion Systems
                   </NavLink>
                 </li>
                 <li role="none">
-                  <NavLink to="/technologies/new-projects-approved" role="menuitem">
+                  <NavLink
+                    to="/technologies/new-projects-approved"
+                    role="menuitem"
+                  >
                     New Projects Approved
                   </NavLink>
                 </li>
@@ -166,11 +265,24 @@ export default function Header() {
             </li>
 
             <li>
-              <NavLink to="/how-to-reach">How to Reach?</NavLink>
+              <button
+                aria-label="How to Reach?"
+                onClick={() => (window.location.href = "/how-to-reach")}
+              >
+                How to Reach?
+              </button>
             </li>
 
             <li className="has-sub" aria-expanded={openIndex === 3}>
-              <button aria-haspopup="true" aria-expanded={openIndex === 3} onClick={() => toggleMenu(3)} onKeyDown={(e) => onMenuKeyDown(e, 3)}>Out Reach ▾</button>
+              <button
+                aria-haspopup="true"
+                aria-expanded={openIndex === 3}
+                onClick={() => toggleMenu(3)}
+                onKeyDown={(e) => onMenuKeyDown(e, 3)}
+              >
+                <span>Out Reach</span>
+                <ChevronDown size={14} aria-hidden="true" />
+              </button>
               <ul className="submenu" role="menu" data-for="3">
                 <li role="none">
                   <NavLink to="/outreach/exhibition" role="menuitem">
@@ -186,7 +298,15 @@ export default function Header() {
             </li>
 
             <li className="has-sub" aria-expanded={openIndex === 4}>
-              <button aria-haspopup="true" aria-expanded={openIndex === 4} onClick={() => toggleMenu(4)} onKeyDown={(e) => onMenuKeyDown(e, 4)}>Students ▾</button>
+              <button
+                aria-haspopup="true"
+                aria-expanded={openIndex === 4}
+                onClick={() => toggleMenu(4)}
+                onKeyDown={(e) => onMenuKeyDown(e, 4)}
+              >
+                <span>Students</span>
+                <ChevronDown size={14} aria-hidden="true" />
+              </button>
               <ul className="submenu" role="menu" data-for="4">
                 <li role="none">
                   <NavLink to="/students/internship" role="menuitem">
@@ -202,15 +322,25 @@ export default function Header() {
             </li>
 
             <li>
-              <a href="https://www.isro.gov.in" target="_blank" rel="noopener">
+              <button
+                aria-label="ISRO"
+                onClick={() =>
+                  (window.location.href = "https://www.isro.gov.in")
+                }
+              >
                 ISRO
-              </a>
+              </button>
             </li>
 
             <li>
-              <a href="https://www.india.gov.in" target="_blank" rel="noopener">
+              <button
+                aria-label="National Portal"
+                onClick={() =>
+                  (window.location.href = "https://www.india.gov.in")
+                }
+              >
                 National Portal
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -218,4 +348,3 @@ export default function Header() {
     </header>
   );
 }
-

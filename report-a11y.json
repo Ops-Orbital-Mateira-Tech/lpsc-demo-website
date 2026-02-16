@@ -14,7 +14,7 @@
       "orientationAngle": 0,
       "orientationType": "landscape-primary"
     },
-    "timestamp": "2026-02-16T20:39:54.798Z",
+    "timestamp": "2026-02-16T20:57:59.801Z",
     "url": "http://localhost:5173/",
     "toolOptions": {
       "reporter": "v1"
@@ -849,6 +849,58 @@
               }
             ],
             "impact": null,
+            "html": "<div class=\"a11y-toolbar\" aria-hidden=\"false\"><button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button></div>",
+            "target": [
+              ".a11y-toolbar"
+            ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-allowed-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attributes are used correctly for the defined role"
+              }
+            ],
+            "none": [
+              {
+                "id": "aria-unsupported-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute is supported"
+              }
+            ],
+            "impact": null,
+            "html": "<button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button>",
+            "target": [
+              ".a11y-floating-btn"
+            ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-allowed-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attributes are used correctly for the defined role"
+              }
+            ],
+            "none": [
+              {
+                "id": "aria-unsupported-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute is supported"
+              }
+            ],
+            "impact": null,
             "html": "<div class=\"search-centered\" role=\"search\" aria-label=\"Site search\"><label for=\"site-search\" class=\"sr-only\">Search the site</label><input id=\"site-search\" name=\"q\" type=\"search\" placeholder=\"Search...\" aria-label=\"Search the site\"><button aria-label=\"Search\" class=\"search-btn\">🔍</button></div>",
             "target": [
               ".search-centered"
@@ -1369,9 +1421,35 @@
               }
             ],
             "impact": null,
-            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\"></div>",
+            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\"></div>",
             "target": [
               ".hero-slide.active[aria-hidden=\"false\"]"
+            ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-allowed-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attributes are used correctly for the defined role"
+              }
+            ],
+            "none": [
+              {
+                "id": "aria-unsupported-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute is supported"
+              }
+            ],
+            "impact": null,
+            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\">",
+            "target": [
+              "img[src$=\"lpsc-hero-1.jpg\"]"
             ]
           },
           {
@@ -2126,6 +2204,32 @@
             "html": "<section class=\"social-media\" aria-labelledby=\"social-media\">",
             "target": [
               ".social-media"
+            ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-allowed-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attributes are used correctly for the defined role"
+              }
+            ],
+            "none": [
+              {
+                "id": "aria-unsupported-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute is supported"
+              }
+            ],
+            "impact": null,
+            "html": "<div id=\"a11y-announcer\" class=\"sr-only\" aria-live=\"polite\"></div>",
+            "target": [
+              "#a11y-announcer"
             ]
           }
         ]
@@ -3234,6 +3338,42 @@
             ],
             "none": [],
             "impact": null,
+            "html": "<div class=\"a11y-toolbar\" aria-hidden=\"false\"><button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button></div>",
+            "target": [
+              ".a11y-toolbar"
+            ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-conditional-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "ARIA attribute is allowed"
+              }
+            ],
+            "none": [],
+            "impact": null,
+            "html": "<button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button>",
+            "target": [
+              ".a11y-floating-btn"
+            ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-conditional-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "ARIA attribute is allowed"
+              }
+            ],
+            "none": [],
+            "impact": null,
             "html": "<div class=\"search-centered\" role=\"search\" aria-label=\"Site search\"><label for=\"site-search\" class=\"sr-only\">Search the site</label><input id=\"site-search\" name=\"q\" type=\"search\" placeholder=\"Search...\" aria-label=\"Search the site\"><button aria-label=\"Search\" class=\"search-btn\">🔍</button></div>",
             "target": [
               ".search-centered"
@@ -3594,9 +3734,27 @@
             ],
             "none": [],
             "impact": null,
-            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\"></div>",
+            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\"></div>",
             "target": [
               ".hero-slide.active[aria-hidden=\"false\"]"
+            ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-conditional-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "ARIA attribute is allowed"
+              }
+            ],
+            "none": [],
+            "impact": null,
+            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\">",
+            "target": [
+              "img[src$=\"lpsc-hero-1.jpg\"]"
             ]
           },
           {
@@ -4120,6 +4278,24 @@
             "target": [
               ".social-media"
             ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-conditional-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "ARIA attribute is allowed"
+              }
+            ],
+            "none": [],
+            "impact": null,
+            "html": "<div id=\"a11y-announcer\" class=\"sr-only\" aria-live=\"polite\"></div>",
+            "target": [
+              "#a11y-announcer"
+            ]
           }
         ]
       },
@@ -4580,7 +4756,7 @@
             ],
             "none": [],
             "impact": null,
-            "html": "<div class=\"hero-slide \" aria-hidden=\"true\"><img src=\"/images/lpsc-hero-2.jpg\" alt=\"Hero image 2\"></div>",
+            "html": "<div class=\"hero-slide \" aria-hidden=\"true\"><img src=\"/images/lpsc-hero-2.jpg\" alt=\"Hero image 2\" aria-hidden=\"false\"></div>",
             "target": [
               ".hero-slide[aria-hidden=\"true\"]:nth-child(2)"
             ]
@@ -4612,7 +4788,7 @@
             ],
             "none": [],
             "impact": null,
-            "html": "<div class=\"hero-slide \" aria-hidden=\"true\"><img src=\"/images/lpsc-hero-3.jpg\" alt=\"Hero image 3\"></div>",
+            "html": "<div class=\"hero-slide \" aria-hidden=\"true\"><img src=\"/images/lpsc-hero-3.jpg\" alt=\"Hero image 3\" aria-hidden=\"false\"></div>",
             "target": [
               ".hero-slide[aria-hidden=\"true\"]:nth-child(3)"
             ]
@@ -5032,6 +5208,42 @@
               }
             ],
             "impact": null,
+            "html": "<div class=\"a11y-toolbar\" aria-hidden=\"false\"><button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button></div>",
+            "target": [
+              ".a11y-toolbar"
+            ]
+          },
+          {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "aria-prohibited-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "ARIA attribute is allowed"
+              }
+            ],
+            "impact": null,
+            "html": "<button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button>",
+            "target": [
+              ".a11y-floating-btn"
+            ]
+          },
+          {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "aria-prohibited-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "ARIA attribute is allowed"
+              }
+            ],
+            "impact": null,
             "html": "<div class=\"search-centered\" role=\"search\" aria-label=\"Site search\"><label for=\"site-search\" class=\"sr-only\">Search the site</label><input id=\"site-search\" name=\"q\" type=\"search\" placeholder=\"Search...\" aria-label=\"Search the site\"><button aria-label=\"Search\" class=\"search-btn\">🔍</button></div>",
             "target": [
               ".search-centered"
@@ -5392,9 +5604,27 @@
               }
             ],
             "impact": null,
-            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\"></div>",
+            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\"></div>",
             "target": [
               ".hero-slide.active[aria-hidden=\"false\"]"
+            ]
+          },
+          {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "aria-prohibited-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "ARIA attribute is allowed"
+              }
+            ],
+            "impact": null,
+            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\">",
+            "target": [
+              "img[src$=\"lpsc-hero-1.jpg\"]"
             ]
           },
           {
@@ -5899,6 +6129,24 @@
             "html": "<section class=\"social-media\" aria-labelledby=\"social-media\">",
             "target": [
               ".social-media"
+            ]
+          },
+          {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "aria-prohibited-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "ARIA attribute is allowed"
+              }
+            ],
+            "impact": null,
+            "html": "<div id=\"a11y-announcer\" class=\"sr-only\" aria-live=\"polite\"></div>",
+            "target": [
+              "#a11y-announcer"
             ]
           }
         ]
@@ -7062,6 +7310,70 @@
             ],
             "none": [],
             "impact": null,
+            "html": "<div class=\"a11y-toolbar\" aria-hidden=\"false\"><button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button></div>",
+            "target": [
+              ".a11y-toolbar"
+            ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-valid-attr-value",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute values are valid"
+              },
+              {
+                "id": "aria-errormessage",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-errormessage exists and references elements visible to screen readers that use a supported aria-errormessage technique"
+              },
+              {
+                "id": "aria-level",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-level values are valid"
+              }
+            ],
+            "none": [],
+            "impact": null,
+            "html": "<button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button>",
+            "target": [
+              ".a11y-floating-btn"
+            ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-valid-attr-value",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute values are valid"
+              },
+              {
+                "id": "aria-errormessage",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-errormessage exists and references elements visible to screen readers that use a supported aria-errormessage technique"
+              },
+              {
+                "id": "aria-level",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-level values are valid"
+              }
+            ],
+            "none": [],
+            "impact": null,
             "html": "<div class=\"search-centered\" role=\"search\" aria-label=\"Site search\"><label for=\"site-search\" class=\"sr-only\">Search the site</label><input id=\"site-search\" name=\"q\" type=\"search\" placeholder=\"Search...\" aria-label=\"Search the site\"><button aria-label=\"Search\" class=\"search-btn\">🔍</button></div>",
             "target": [
               ".search-centered"
@@ -7702,9 +8014,41 @@
             ],
             "none": [],
             "impact": null,
-            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\"></div>",
+            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\"></div>",
             "target": [
               ".hero-slide.active[aria-hidden=\"false\"]"
+            ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-valid-attr-value",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute values are valid"
+              },
+              {
+                "id": "aria-errormessage",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-errormessage exists and references elements visible to screen readers that use a supported aria-errormessage technique"
+              },
+              {
+                "id": "aria-level",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-level values are valid"
+              }
+            ],
+            "none": [],
+            "impact": null,
+            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\">",
+            "target": [
+              "img[src$=\"lpsc-hero-1.jpg\"]"
             ]
           },
           {
@@ -8633,6 +8977,38 @@
             "html": "<section class=\"social-media\" aria-labelledby=\"social-media\">",
             "target": [
               ".social-media"
+            ]
+          },
+          {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-valid-attr-value",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute values are valid"
+              },
+              {
+                "id": "aria-errormessage",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-errormessage exists and references elements visible to screen readers that use a supported aria-errormessage technique"
+              },
+              {
+                "id": "aria-level",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-level values are valid"
+              }
+            ],
+            "none": [],
+            "impact": null,
+            "html": "<div id=\"a11y-announcer\" class=\"sr-only\" aria-live=\"polite\"></div>",
+            "target": [
+              "#a11y-announcer"
             ]
           }
         ]
@@ -8666,6 +9042,42 @@
             "all": [],
             "none": [],
             "impact": null,
+            "html": "<div class=\"a11y-toolbar\" aria-hidden=\"false\"><button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button></div>",
+            "target": [
+              ".a11y-toolbar"
+            ]
+          },
+          {
+            "any": [
+              {
+                "id": "aria-valid-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute name is valid"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button>",
+            "target": [
+              ".a11y-floating-btn"
+            ]
+          },
+          {
+            "any": [
+              {
+                "id": "aria-valid-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute name is valid"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
             "html": "<div class=\"search-centered\" role=\"search\" aria-label=\"Site search\"><label for=\"site-search\" class=\"sr-only\">Search the site</label><input id=\"site-search\" name=\"q\" type=\"search\" placeholder=\"Search...\" aria-label=\"Search the site\"><button aria-label=\"Search\" class=\"search-btn\">🔍</button></div>",
             "target": [
               ".search-centered"
@@ -9026,9 +9438,27 @@
             "all": [],
             "none": [],
             "impact": null,
-            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\"></div>",
+            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\"></div>",
             "target": [
               ".hero-slide.active[aria-hidden=\"false\"]"
+            ]
+          },
+          {
+            "any": [
+              {
+                "id": "aria-valid-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute name is valid"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\">",
+            "target": [
+              "img[src$=\"lpsc-hero-1.jpg\"]"
             ]
           },
           {
@@ -9552,6 +9982,24 @@
             "target": [
               ".social-media"
             ]
+          },
+          {
+            "any": [
+              {
+                "id": "aria-valid-attr",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute name is valid"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<div id=\"a11y-announcer\" class=\"sr-only\" aria-live=\"polite\"></div>",
+            "target": [
+              "#a11y-announcer"
+            ]
           }
         ]
       },
@@ -9576,6 +10024,31 @@
         "help": "Buttons must have discernible text",
         "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=webdriverjs",
         "nodes": [
+          {
+            "any": [
+              {
+                "id": "button-has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has inner text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute exists and is not empty"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button>",
+            "target": [
+              ".a11y-floating-btn"
+            ]
+          },
           {
             "any": [
               {
@@ -10170,7 +10643,7 @@
             "all": [],
             "none": [],
             "impact": null,
-            "html": "<html lang=\"en\">",
+            "html": "<html lang=\"en\" class=\"a11y-underline-links\">",
             "target": [
               "html"
             ]
@@ -10196,6 +10669,31 @@
         "help": "Elements must meet minimum color contrast ratio thresholds",
         "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=webdriverjs",
         "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#0f5a52",
+                  "contrastRatio": 8.06,
+                  "fontSize": "10.0pt (13.3333px)",
+                  "fontWeight": "normal",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has sufficient color contrast of 8.06"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button>",
+            "target": [
+              ".a11y-floating-btn"
+            ]
+          },
           {
             "any": [
               {
@@ -11980,7 +12478,7 @@
             "all": [],
             "none": [],
             "impact": null,
-            "html": "<html lang=\"en\">",
+            "html": "<html lang=\"en\" class=\"a11y-underline-links\">",
             "target": [
               "html"
             ]
@@ -12532,85 +13030,85 @@
                   "headingOrder": [
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > header:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > h1:nth-child(1)"
+                        "html > body > div:nth-child(1) > header:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > h1:nth-child(1)"
                       ],
                       "level": 1
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > main:nth-child(4) > section:nth-child(3) > div > h2:nth-child(1)"
+                        "html > body > div:nth-child(1) > main:nth-child(5) > section:nth-child(3) > div > h2:nth-child(1)"
                       ],
                       "level": 2
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > main:nth-child(4) > section:nth-child(4) > div > div:nth-child(1) > h2:nth-child(1)"
+                        "html > body > div:nth-child(1) > main:nth-child(5) > section:nth-child(4) > div > div:nth-child(1) > h2:nth-child(1)"
                       ],
                       "level": 2
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > main:nth-child(4) > section:nth-child(4) > div > div:nth-child(2) > h3:nth-child(1)"
+                        "html > body > div:nth-child(1) > main:nth-child(5) > section:nth-child(4) > div > div:nth-child(2) > h3:nth-child(1)"
                       ],
                       "level": 3
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > main:nth-child(4) > section:nth-child(5) > div > div:nth-child(1) > h2:nth-child(1)"
+                        "html > body > div:nth-child(1) > main:nth-child(5) > section:nth-child(5) > div > div:nth-child(1) > h2:nth-child(1)"
                       ],
                       "level": 2
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > main:nth-child(4) > section:nth-child(5) > div > div:nth-child(1) > div:nth-child(2) > article:nth-child(1) > div:nth-child(1) > h3:nth-child(1)"
+                        "html > body > div:nth-child(1) > main:nth-child(5) > section:nth-child(5) > div > div:nth-child(1) > div:nth-child(2) > article:nth-child(1) > div:nth-child(1) > h3:nth-child(1)"
                       ],
                       "level": 3
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > main:nth-child(4) > section:nth-child(5) > div > div:nth-child(1) > div:nth-child(2) > article:nth-child(2) > div:nth-child(1) > h3:nth-child(1)"
+                        "html > body > div:nth-child(1) > main:nth-child(5) > section:nth-child(5) > div > div:nth-child(1) > div:nth-child(2) > article:nth-child(2) > div:nth-child(1) > h3:nth-child(1)"
                       ],
                       "level": 3
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > main:nth-child(4) > section:nth-child(5) > div > div:nth-child(1) > div:nth-child(2) > article:nth-child(3) > div:nth-child(1) > h3:nth-child(1)"
+                        "html > body > div:nth-child(1) > main:nth-child(5) > section:nth-child(5) > div > div:nth-child(1) > div:nth-child(2) > article:nth-child(3) > div:nth-child(1) > h3:nth-child(1)"
                       ],
                       "level": 3
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > main:nth-child(4) > section:nth-child(5) > div > div:nth-child(1) > div:nth-child(2) > article:nth-child(4) > div:nth-child(1) > h3:nth-child(1)"
+                        "html > body > div:nth-child(1) > main:nth-child(5) > section:nth-child(5) > div > div:nth-child(1) > div:nth-child(2) > article:nth-child(4) > div:nth-child(1) > h3:nth-child(1)"
                       ],
                       "level": 3
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > main:nth-child(4) > section:nth-child(5) > div > div:nth-child(2) > h2:nth-child(1)"
+                        "html > body > div:nth-child(1) > main:nth-child(5) > section:nth-child(5) > div > div:nth-child(2) > h2:nth-child(1)"
                       ],
                       "level": 2
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > main:nth-child(4) > section:nth-child(6) > div > h2:nth-child(1)"
+                        "html > body > div:nth-child(1) > main:nth-child(5) > section:nth-child(6) > div > h2:nth-child(1)"
                       ],
                       "level": 2
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > footer:nth-child(5) > div:nth-child(1) > div:nth-child(1) > h3:nth-child(1)"
+                        "html > body > div:nth-child(1) > footer:nth-child(6) > div:nth-child(1) > div:nth-child(1) > h3:nth-child(1)"
                       ],
                       "level": 3
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > footer:nth-child(5) > div:nth-child(1) > div:nth-child(2) > h3:nth-child(1)"
+                        "html > body > div:nth-child(1) > footer:nth-child(6) > div:nth-child(1) > div:nth-child(2) > h3:nth-child(1)"
                       ],
                       "level": 3
                     },
                     {
                       "ancestry": [
-                        "html > body > div:nth-child(1) > footer:nth-child(5) > div:nth-child(1) > div:nth-child(3) > h3:nth-child(1)"
+                        "html > body > div:nth-child(1) > footer:nth-child(6) > div:nth-child(1) > div:nth-child(3) > h3:nth-child(1)"
                       ],
                       "level": 3
                     }
@@ -12897,7 +13395,7 @@
             "all": [],
             "none": [],
             "impact": null,
-            "html": "<html lang=\"en\">",
+            "html": "<html lang=\"en\" class=\"a11y-underline-links\">",
             "target": [
               "html"
             ]
@@ -12936,7 +13434,7 @@
               }
             ],
             "impact": null,
-            "html": "<html lang=\"en\">",
+            "html": "<html lang=\"en\" class=\"a11y-underline-links\">",
             "target": [
               "html"
             ]
@@ -13038,7 +13536,7 @@
               }
             ],
             "impact": null,
-            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\">",
+            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\">",
             "target": [
               "img[src$=\"lpsc-hero-1.jpg\"]"
             ]
@@ -13105,7 +13603,7 @@
               }
             ],
             "impact": null,
-            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\">",
+            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\">",
             "target": [
               "img[src$=\"lpsc-hero-1.jpg\"]"
             ]
@@ -13436,7 +13934,7 @@
             ],
             "none": [],
             "impact": null,
-            "html": "<html lang=\"en\">",
+            "html": "<html lang=\"en\" class=\"a11y-underline-links\">",
             "target": [
               "html"
             ]
@@ -15410,6 +15908,24 @@
             "all": [],
             "none": [],
             "impact": null,
+            "html": "<button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button>",
+            "target": [
+              ".a11y-floating-btn"
+            ]
+          },
+          {
+            "any": [
+              {
+                "id": "no-focusable-content",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element does not have focusable descendants"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
             "html": "<img src=\"/images/Emblem.png\" alt=\"Government Emblem\" class=\"emblem\">",
             "target": [
               ".emblem"
@@ -15608,7 +16124,7 @@
             "all": [],
             "none": [],
             "impact": null,
-            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\">",
+            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\">",
             "target": [
               "img[src$=\"lpsc-hero-1.jpg\"]"
             ]
@@ -15916,7 +16432,7 @@
             ],
             "none": [],
             "impact": null,
-            "html": "<html lang=\"en\">",
+            "html": "<html lang=\"en\" class=\"a11y-underline-links\">",
             "target": [
               "html"
             ]
@@ -15994,6 +16510,46 @@
             "html": "<a class=\"skip-link\" href=\"#maincontent\">Skip to content</a>",
             "target": [
               "a[href$=\"#maincontent\"]"
+            ]
+          },
+          {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "All page content is contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<div class=\"a11y-toolbar\" aria-hidden=\"false\"><button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button></div>",
+            "target": [
+              ".a11y-toolbar"
+            ]
+          },
+          {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "All page content is contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<button class=\"a11y-floating-btn\" aria-label=\"Open accessibility toolbar\" aria-expanded=\"false\">A11Y</button>",
+            "target": [
+              ".a11y-floating-btn"
             ]
           },
           {
@@ -17071,7 +17627,7 @@
             "all": [],
             "none": [],
             "impact": null,
-            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\"></div>",
+            "html": "<div class=\"hero-slide active\" aria-hidden=\"false\"><img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\"></div>",
             "target": [
               ".hero-slide.active[aria-hidden=\"false\"]"
             ]
@@ -17091,7 +17647,7 @@
             "all": [],
             "none": [],
             "impact": null,
-            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\">",
+            "html": "<img src=\"/images/lpsc-hero-1.jpg\" alt=\"Hero image 1\" aria-hidden=\"false\">",
             "target": [
               "img[src$=\"lpsc-hero-1.jpg\"]"
             ]
@@ -20354,6 +20910,26 @@
             "html": "<div class=\"copyright\">This website belongs to Liquid Propulsion Systems Centre (LPSC), Department of Space, Government of India</div>",
             "target": [
               ".copyright"
+            ]
+          },
+          {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "All page content is contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<div id=\"a11y-announcer\" class=\"sr-only\" aria-live=\"polite\"></div>",
+            "target": [
+              "#a11y-announcer"
             ]
           }
         ]
