@@ -135,10 +135,10 @@ export default function Header() {
         <div className="container nav-inner">
           <ul className="nav-list">
             <li>
-              <button
-                aria-label="Home"
-                onClick={() => (window.location.href = "/")}
-              >
+            <button
+              aria-label="Home"
+              onClick={() => (window.location.href = "/")}
+            >
                 Home
               </button>
             </li>

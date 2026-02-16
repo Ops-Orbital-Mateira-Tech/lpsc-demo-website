@@ -148,10 +148,38 @@ html, body, #root {
 .submenu a:hover, .submenu a:focus { background: var(--color-muted); color: var(--text-color); outline: none; }
 
 .hero { background: var(--color-muted); padding: 1rem 0; }
-.hero-inner { position: relative; overflow: hidden; padding: 1rem 0; }
-.hero-slide { position: absolute; inset: 0; opacity: 0; transform: translateX(100%); transition: transform 600ms ease, opacity 600ms ease; display:flex; align-items:center; justify-content:center; padding:1rem; }
-.hero-slide img { width:100%; height:auto; display:block; border-radius:4px; max-height:420px; object-fit:cover; }
-.hero-slide.active { opacity: 1; transform: translateX(0); position:relative; }
+.hero-inner { position: relative; overflow: hidden; padding: 1rem 0; min-height:320px; }
+.hero-slide { position: absolute; inset: 0; opacity: 0; transform: translateX(6%) scale(0.99); transition: transform 700ms cubic-bezier(.2,.9,.25,1), opacity 700ms ease; display:flex; align-items:center; justify-content:center; padding:1rem; pointer-events:none; }
+.hero-image-wrap { width:100%; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.hero-slide img { width:100%; height:auto; display:block; border-radius:8px; max-height:460px; object-fit:cover; transform-origin:center center; transition: transform 900ms ease; }
+.hero-slide.active { opacity: 1; transform: translateX(0) scale(1); position:relative; pointer-events:auto; }
+.hero-slide.active img { transform: scale(1.06) translateY(-4px); filter: saturate(105%); }
+
+/* unique entrance effect for non-active -> active */
+@keyframes heroEntry {
+  0% { opacity: 0; transform: translateX(8%) scale(0.98) rotate(-0.4deg); }
+  60% { opacity: 1; transform: translateX(-2%) scale(1.02) rotate(0.2deg); }
+  100% { opacity: 1; transform: translateX(0) scale(1) rotate(0deg); }
+}
+.hero-slide.active { animation: heroEntry 700ms cubic-bezier(.2,.9,.25,1) both; }
+
+/* Controls: place prev/next at sides and vertically centered */
+.hero-controls { position:absolute; inset:0; pointer-events:none; }
+.hero-controls button { pointer-events:all; background: rgba(0,0,0,0.45); color:#fff; border:none; padding:0.6rem 0.8rem; border-radius:8px; font-size:1.25rem; transition: transform 140ms ease, background 140ms; outline:none; position:absolute; top:50%; transform:translateY(-50%); z-index:250; }
+.hero-controls button:hover { transform: translateY(-50%) translateY(-3px) scale(1.04); background: rgba(0,0,0,0.6); }
+.hero-prev { left: 12px; }
+.hero-next { right: 12px; }
+
+/* Indicators */
+.hero-indicators { position:absolute; bottom:0.6rem; left:50%; transform:translateX(-50%); display:flex; gap:0.5rem; }
+.hero-indicators .indicator { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.6); border:none; }
+.hero-indicators .indicator.active { background:var(--color-primary); transform:scale(1.15); }
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide, .hero-slide.active, .hero-slide img { transition: none !important; animation: none !important; transform: none !important; }
+  .hero-controls button { transition: none !important; }
+}
 
 .hero-controls { position:absolute; top:50%; left:0; right:0; display:flex; justify-content:space-between; transform:translateY(-50%); pointer-events:none; padding:0 1rem; }
 .hero-controls button { pointer-events:all; background: rgba(0,0,0,0.5); color:#fff; border:none; padding:0.5rem 0.75rem; border-radius:4px; font-size:1.5rem; }

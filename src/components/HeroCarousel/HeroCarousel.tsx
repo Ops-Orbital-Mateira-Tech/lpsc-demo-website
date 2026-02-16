@@ -76,8 +76,12 @@ export default function HeroCarousel() {
             className={`hero-slide ${i === index ? 'active' : ''}`}
             key={i}
             aria-hidden={i === index ? 'false' : 'true'}
+            aria-roledescription="slide"
+            aria-label={`Slide ${i + 1} of ${images.length}`}
           >
-            <img src={src} alt={`Hero image ${i + 1}`} onError={(e) => handleError(e, i)} aria-hidden={prefs?.textOnly ? 'true' : 'false'} />
+            <div className="hero-image-wrap">
+              <img src={src} alt={`Hero image ${i + 1}`} onError={(e) => handleError(e, i)} aria-hidden={prefs?.textOnly ? 'true' : 'false'} />
+            </div>
           </div>
         ))}
 
