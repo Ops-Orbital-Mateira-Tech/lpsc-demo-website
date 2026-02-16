@@ -1,0 +1,26 @@
+:root {
+  /* DBIM-inspired color tokens (editable) */
+  --color-primary: #0f5a52;
+  --color-accent: #1b8f80;
+  --color-muted: #e9efee;
+  --text-color: #083233;
+  --bg: #ffffff;
+
+  /* Typography: base font-size uses html font-size for easy scaling */
+  --font-sans: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  --font-size-base: 1rem; /* 1rem == html font-size (default 16px) */
+  --line-height-base: 1.5;
+}
+
+/* Default html font size (can be overridden by accessibility classes) */
+html { font-size: 16px; }
+
+/* High contrast override */
+html.a11y-high-contrast {
+  --color-primary: #000000;
+  --color-accent: #000000;
+  --color-muted: #ffffff;
+  --text-color: #000000;
+  --bg: #ffffff;
+}
+
