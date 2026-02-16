@@ -169,6 +169,27 @@ html, body, #root {
 .hero-controls button:hover { transform: translateY(-50%) translateY(-3px) scale(1.04); background: rgba(0,0,0,0.6); }
 .hero-prev { left: 12px; }
 .hero-next { right: 12px; }
+/* Pause control positioned at bottom-right of the hero */
+.hero-pause {
+  top: auto;
+  bottom: 12px;
+  right: 12px;
+  transform: translateY(0);
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.hero-pause[aria-pressed="true"] { background: rgba(255,255,255,0.95); color: #000; }
+
+/* stronger positioning to ensure bottom-right placement */
+.hero-controls .hero-pause {
+  position: absolute;
+  top: auto !important;
+  bottom: -100px !important;
+  right: 12px !important;
+  transform: none !important;
+  z-index: 260;
+}
 
 /* Indicators */
 .hero-indicators { position:absolute; bottom:0.6rem; left:50%; transform:translateX(-50%); display:flex; gap:0.5rem; }
