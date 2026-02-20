@@ -1,10 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAccessibility } from "../../context/AccessibilityContext";
 import { NavLink } from "react-router-dom";
-import { Globe, Type, Contrast, ChevronDown } from "lucide-react";
+import {
+  Globe,
+  Type,
+  Contrast,
+  ChevronDown,
+  Menu,
+  Sliders,
+} from "lucide-react";
 
 export default function Header() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [showHeaderControls, setShowHeaderControls] = useState(false);
   const [lang, setLang] = useState<"en" | "hi">("en");
   const navRef = useRef<HTMLElement | null>(null);
   const { prefs, setPref } = useAccessibility();
@@ -35,93 +44,159 @@ export default function Header() {
   return (
     <header className="site-header" role="banner">
       <div className="topbar container">
-        <div className="branding">
-          <img
-            src="/images/Emblem.png"
-            alt="Government Emblem"
-            className="emblem"
-          />
-          <img src="/images/LPSC-Logo.png" alt="LPSC logo" className="logo" />
-          <div className="title">
-            <h1 className="sr-only">
-              Liquid Propulsion Systems Centre — Indian Space Research
-              Organisation
-            </h1>
-            <div className="org">Liquid Propulsion Systems Centre</div>
-            <div className="dept">Indian Space Research Organisation</div>
+        <div className="branding-row">
+          <div className="branding">
+            <img
+              src="/images/Emblem.png"
+              alt="Government Emblem"
+              className="emblem"
+            />
+            <div className="title">
+              <h1 className="sr-only">
+                Liquid Propulsion Systems Centre — Indian Space Research
+                Organisation
+              </h1>
+              <div className="org">Liquid Propulsion Systems Centre</div>
+              <div className="dept">Indian Space Research Organisation</div>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <div className="right-logos" aria-hidden="true">
+                <img
+                  src="/images/DigitalIndia.png"
+                  alt="Digital India logo"
+                  className="mini-logo"
+                />
+              </div>
+              <img
+                src="/images/LPSC-Logo.png"
+                alt="LPSC logo"
+                className="logo"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="search-centered" role="search" aria-label="Site search">
-          <label htmlFor="site-search" className="sr-only">
-            Search the site
-          </label>
-          <input
-            id="site-search"
-            name="q"
-            type="search"
-            placeholder="Search..."
-            aria-label="Search the site"
-          />
-          <button aria-label="Search" className="search-btn">
-            🔍
+        <div className="search-row">
+          <div
+            className="search-centered"
+            role="search"
+            aria-label="Site search"
+          >
+            <label htmlFor="site-search" className="sr-only">
+              Search the site
+            </label>
+            <input
+              id="site-search"
+              name="q"
+              type="search"
+              placeholder="Search..."
+              aria-label="Search the site"
+            />
+            <button aria-label="Search" className="search-btn">
+              🔍
+            </button>
+          </div>
+        </div>
+
+        <div className="nav-row" role="toolbar" aria-label="Navigation toggles">
+          <button
+            className="menu-toggle menu-toggle-left"
+            aria-expanded={mobileNavOpen}
+            aria-controls="primarynav-list"
+            onClick={() => setMobileNavOpen((s) => !s)}
+            aria-label={mobileNavOpen ? "Close navigation" : "Open navigation"}
+          >
+            <Menu size={20} />
+          </button>
+
+          <div className="nav-row-spacer" aria-hidden="true" >
+          <div className="search-row mobile-search-row">
+          <div
+            className="search-centered"
+            role="search"
+            aria-label="Site search"
+          >
+            <label htmlFor="site-search" className="sr-only">
+              Search the site
+            </label>
+            <input
+              id="site-search"
+              name="q"
+              type="search"
+              placeholder="Search..."
+              aria-label="Search the site"
+            />
+            <button aria-label="Search" className="search-btn">
+              🔍
+            </button>
+          </div>
+        </div>
+        </div>
+
+          <button
+            className="menu-toggle menu-toggle-right"
+            aria-expanded={showHeaderControls}
+            aria-controls="header-controls"
+            onClick={() => setShowHeaderControls((s) => !s)}
+            aria-label={
+              showHeaderControls ? "Hide header tools" : "Show header tools"
+            }
+          >
+            <Sliders size={20} />
           </button>
         </div>
 
-        <div className="access-and-logos">
-          <div className="right-logos" aria-hidden="true">
-            <img
-              src="/images/DigitalIndia.png"
-              alt="Digital India logo"
-              className="mini-logo"
-            />
-          </div>
-
+        <div
+          id="header-controls"
+          className={`header-icons header-text-controls ${
+            showHeaderControls ? "show" : ""
+          }`}
+          aria-hidden={!showHeaderControls}
+        >
           <div
-            className="header-icons header-text-controls"
-            aria-hidden="false"
+            className="text-size-controls"
+            role="group"
+            aria-label="Text size controls"
           >
-            <div
-              className="text-size-controls"
-              role="group"
-              aria-label="Text size controls"
+            <button
+              className={`text-size-btn ${
+                prefs.fontSize === "large" ? "active" : ""
+              }`}
+              aria-pressed={prefs.fontSize === "large"}
+              aria-label="Increase text size"
+              onClick={() => setPref("fontSize", "large")}
             >
-              <button
-                className={`text-size-btn ${
-                  prefs.fontSize === "large" ? "active" : ""
-                }`}
-                aria-pressed={prefs.fontSize === "large"}
-                aria-label="Increase text size"
-                onClick={() => setPref("fontSize", "large")}
-              >
-                A+
-              </button>
-              <button
-                className={`text-size-btn ${
-                  prefs.fontSize === "normal" ? "active" : ""
-                }`}
-                aria-pressed={prefs.fontSize === "normal"}
-                aria-label="Default text size"
-                onClick={() => setPref("fontSize", "normal")}
-              >
-                A
-              </button>
-              <button
-                className={`text-size-btn ${
-                  prefs.fontSize === "small" ? "active" : ""
-                }`}
-                aria-pressed={prefs.fontSize === "small"}
-                aria-label="Decrease text size"
-                onClick={() => setPref("fontSize", "small")}
-              >
-                A-
-              </button>
-            </div>
-
-            <a className="skip-inline" href="#about-ministry" style={{fontSize: '0.7rem'}}>
-              Skip to main content
-            </a>
+              A+
+            </button>
+            <button
+              className={`text-size-btn ${
+                prefs.fontSize === "normal" ? "active" : ""
+              }`}
+              aria-pressed={prefs.fontSize === "normal"}
+              aria-label="Default text size"
+              onClick={() => setPref("fontSize", "normal")}
+            >
+              A
+            </button>
+            <button
+              className={`text-size-btn ${
+                prefs.fontSize === "small" ? "active" : ""
+              }`}
+              aria-pressed={prefs.fontSize === "small"}
+              aria-label="Decrease text size"
+              onClick={() => setPref("fontSize", "small")}
+            >
+              A-
+            </button>
           </div>
+
+          <a
+            className="skip-inline"
+            href="#about-ministry"
+            style={{ fontSize: "0.7rem" }}
+          >
+            Skip to main content
+          </a>
         </div>
       </div>
 
@@ -133,12 +208,15 @@ export default function Header() {
         aria-label="Primary navigation"
       >
         <div className="container nav-inner">
-          <ul className="nav-list">
+          <ul
+            id="primarynav-list"
+            className={`nav-list ${mobileNavOpen ? "show" : ""}`}
+          >
             <li>
-            <button
-              aria-label="Home"
-              onClick={() => (window.location.href = "/")}
-            >
+              <button
+                aria-label="Home"
+                onClick={() => (window.location.href = "/")}
+              >
                 Home
               </button>
             </li>

@@ -93,6 +93,12 @@ html, body, #root {
 .icon-btn:focus { outline:3px solid rgba(21,156,228,0.35); }
 .mini-logo { height:48px; width:auto; }
 
+/* Mobile: make tap targets and spacing friendlier */
+.btn, button, .icon-btn, .text-size-btn, .access-btn {
+  min-height: 40px;
+  min-width: 40px;
+}
+
 /* Header text-size controls */
 .header-text-controls { display:flex; align-items:center; gap:0.5rem; }
 .text-size-controls { display:flex; gap:0.35rem; align-items:center; }
@@ -148,7 +154,7 @@ html, body, #root {
 .submenu a:hover, .submenu a:focus { background: var(--color-muted); color: var(--text-color); outline: none; }
 
 .hero { background: var(--color-muted); padding: 1rem 0; }
-.hero-inner { position: relative; overflow: hidden; padding: 1rem 0; min-height:320px; }
+.hero-inner { position: relative; overflow: hidden; padding: 1rem 0; min-height:280px; }
 .hero-slide { position: absolute; inset: 0; opacity: 0; transform: translateX(6%) scale(0.99); transition: transform 700ms cubic-bezier(.2,.9,.25,1), opacity 700ms ease; display:flex; align-items:center; justify-content:center; padding:1rem; pointer-events:none; }
 .hero-image-wrap { width:100%; display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .hero-slide img { width:100%; height:auto; display:block; border-radius:8px; max-height:460px; object-fit:cover; transform-origin:center center; transition: transform 900ms ease; }
@@ -193,7 +199,18 @@ html, body, #root {
 
 /* Indicators */
 .hero-indicators { position:absolute; bottom:0.6rem; left:50%; transform:translateX(-50%); display:flex; gap:0.5rem; }
-.hero-indicators .indicator { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.6); border:none; }
+.hero-indicators .indicator {
+  /* Override global button min-size so indicators stay small */
+  min-width: auto;
+  min-height: auto;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  border: none;
+  display: inline-block;
+}
 .hero-indicators .indicator.active { background:var(--color-primary); transform:scale(1.15); }
 
 /* Respect prefers-reduced-motion */
@@ -205,7 +222,17 @@ html, body, #root {
 .hero-controls { position:absolute; top:50%; left:0; right:0; display:flex; justify-content:space-between; transform:translateY(-50%); pointer-events:none; padding:0 1rem; }
 .hero-controls button { pointer-events:all; background: rgba(0,0,0,0.5); color:#fff; border:none; padding:0.5rem 0.75rem; border-radius:4px; font-size:1.5rem; }
 .hero-indicators { position:absolute; bottom:0.5rem; left:50%; transform:translateX(-50%); display:flex; gap:0.5rem; }
-.hero-indicators .indicator { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.6); border:none; }
+.hero-indicators .indicator {
+  min-width: auto;
+  min-height: auto;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  border: none;
+  display: inline-block;
+}
 .hero-indicators .indicator.active { background:var(--color-primary); }
 
 .announcements { background: #f6f6f6; padding: 0.5rem 0; border-top:1px solid #e1e1e1; }
@@ -311,6 +338,107 @@ html, body, #root {
   .about-ministry .cards { flex-direction:column; }
 }
 
+/* Mobile / small-screen improvements (deep responsive tweaks) */
+@media (max-width: 900px) {
+  .container { padding: 0.75rem; }
+  .site-header .container {flex-direction:column; }
+  /* Stack header elements and increase spacing for touch */
+  .header-inner { flex-direction: column; align-items: stretch; gap: 0.6rem; }
+  .branding { justify-content: flex-start; }
+  .search-centered { order: 3; width: 100%; justify-content: stretch; }
+  .search-centered input { width: 100%; max-width: 100%; }
+
+  /* Collapsible nav: hide desktop list and show a menu toggle */
+  .nav-inner { position: relative; }
+  .nav-list { display: none; flex-direction: column; gap: 0; background: #fff; border-top: 1px solid var(--color-muted); width: 100%; padding: 0.5rem 0; box-shadow: 0 8px 20px rgba(0,0,0,0.04); border-radius: 6px; }
+  .nav-list.show { display: flex; }
+  .nav-list a, .nav-list button { padding: 0.75rem 1rem; font-size: 1rem; width: 100%; text-align: left; }
+.menu-toggle { display: inline-flex; align-items:center; gap:0.5rem; background: transparent; border: 1px solid rgba(0,0,0,0.08); padding: 0.5rem 0.75rem; border-radius: 6px; cursor: pointer; }
+  .menu-toggle:focus { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+/* Separate left/right toggles for topbar */
+.menu-toggle-left, .menu-toggle-right { display: none; }
+
+@media (max-width: 900px) {
+  .menu-toggle-left, .menu-toggle-right { display: inline-flex; background: transparent; border: none; padding: 0.25rem; min-width: 40px; min-height: 40px; align-items:center; justify-content:center; }
+  .menu-toggle-left { order: 0; margin-right: 0.5rem; }
+  .menu-toggle-right { order: 4; margin-left: 0.5rem; }
+  /* Hide inline header icons by default on mobile; show when toggled */
+  .header-icons { display: none !important; }
+  .header-icons.show { display: flex !important; gap: 0.5rem; align-items:center; }
+}
+
+/* New header rows layout: branding on top, controls row below */
+.branding-row { display:flex; justify-content:center; padding:0.5rem 0 0.25rem 0; }
+.branding { display:flex; align-items:center; justify-content:center; gap:1rem; width:100%; max-width:1100px; }
+.branding .title { flex:1; text-align:center; }
+.branding .org { font-weight:700; font-size:1.05rem; color:#000; }
+.branding .dept { font-size:0.85rem; color:#000; opacity:0.85; }
+.branding .emblem { width:48px; height:auto; }
+.branding .logo { width:92px; height:auto; }
+.branding .right-logos { display:flex; align-items:center; gap:0.5rem; }
+.branding .mini-logo { height:44px; width:auto; }
+.controls-row { display:flex; align-items:center; justify-content:space-between; gap:0.5rem; width:100%; padding:0.35rem 0; }
+.controls-row { display:flex; align-items:center; justify-content:space-between; gap:0.5rem; width:100%; padding:0.35rem 0; }
+.controls-row .search-centered { flex: 1 1 60%; display:flex; align-items:center; justify-content:center; }
+.controls-row .search-centered input { width: 100%; max-width: 640px; border-radius: 6px; padding: 0.5rem 0.75rem; }
+.controls-row .header-right { display:flex; align-items:center; gap:0.5rem; }
+
+/* New search row + nav row (hamburgers below search) */
+.search-row { display:flex; justify-content:center; width:100%; padding:0.35rem 0; }
+.search-row .search-centered { width:100%; max-width:720px; display:flex; justify-content:center; align-items:center; }
+.nav-row { display:flex; align-items:center; justify-content:space-between; width:100%; padding:0.25rem 0; }
+.nav-row .menu-toggle { background: transparent; border: 1px solid rgba(0,0,0,0.06); padding: 0.5rem; border-radius:6px; }
+.nav-row-spacer { flex:1; }
+
+/* Ensure header content respects container and doesn't expand page width */
+.site-header, .topbar, .main-nav { width: 100%; box-sizing: border-box; }
+.site-header .container { max-width: 1100px; margin: 0 auto; padding-left: 1rem; padding-right: 1rem; }
+
+@media (min-width: 901px) {
+  /* On larger screens keep earlier layout (horizontal topbar) */
+  .topbar { display:flex; align-items:center; justify-content:space-between; padding:0.75rem 0; }
+  .branding-row { padding: 0; }
+  .branding { flex-direction:row; text-align:left; }
+  .branding .org, .branding .dept { color: var(--text-color); }
+  .controls-row .search-centered { justify-content:flex-start}
+  .mobile-search-row { display:none !important; }
+  .nav-row { display:none; }
+  .menu-toggle { display: none; }
+  .menu-toggle-left, .menu-toggle-right { display: none !important; visibility: hidden !important; background: transparent; border: none; padding: 0.25rem; min-width: 40px; min-height: 40px; align-items:center; justify-content:center; }
+}
+
+  /* Make hero more compact on mobile */
+  .hero-inner { min-height: 180px; padding: 0.5rem 0; }
+  /* Keep slides absolutely positioned on small screens so only the active slide is visible.
+     Previously slides were made relative which caused all slides to flow and display one
+     after another (breaking the slider into multiple parts). */
+  .hero-slide { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 0.5rem; pointer-events: none; }
+  .hero-slide.active { position: relative; pointer-events: auto; }
+  .hero-slide img { border-radius: 6px; max-height: 260px; width: 100%; height: auto; object-fit: cover; }
+  .hero-controls button { background: rgba(0,0,0,0.6); padding: 0.45rem 0.6rem; font-size: 1.05rem; border-radius: 6px; }
+  .hero-prev { left: 8px; }
+  .hero-next { right: 8px; }
+  .hero-indicators { bottom: 6px; gap: 0.4rem; }
+
+  /* Stack key grid and recent/links vertically */
+  .key-grid { grid-template-columns: 1fr; }
+  .recent-and-links-inner { grid-template-columns: 1fr; }
+  .document-cards { grid-template-columns: 1fr; }
+  .doc-card { padding: 0.85rem; }
+
+  /* Footer: center content and increase tap targets */
+  .footer-inner { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+  .footer-column { min-width: 100%; }
+
+  /* Larger, more readable headings on mobile using tokens */
+  h1 { font-size: clamp(1.4rem, 5.6vw, 2rem); margin: 0.2rem 0 0.6rem 0; }
+  h2 { font-size: clamp(1.05rem, 4.2vw, 1.5rem); margin: 0.2rem 0 0.45rem 0; }
+  h3 { font-size: clamp(0.95rem, 3.6vw, 1.1rem); margin: 0.1rem 0 0.35rem 0; }
+}
+
+/* Small helper so JS can toggle nav: add visible state class without JS layout break */
+.nav-inner .nav-list.show { display: flex; }
+
 /* Accessibility typography adjustments applied via classes on <html> */
 html.a11y-legible, html.a11y-legible body, html.a11y-legible * {
   /* Use a highly legible system stack */
@@ -379,4 +507,60 @@ html.a11y-tooltips [data-tooltip]:focus-within::after {
 
 /* Ensure tooltip placement inside toolbar doesn't get clipped */
 .a11y-panel [data-tooltip] { position: relative; }
+
+/* Ensure toggles are completely hidden on larger screens (extra specificity in case of overrides) */
+@media (min-width: 901px) {
+  .site-header .menu-toggle,
+  .site-header .menu-toggle-left,
+  .site-header .menu-toggle-right {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+}
+
+/* Control which search row is visible:
+   - On desktop (>=901px) show the primary/top search row and hide the mobile search row.
+   - On mobile (<=900px) hide the primary/top search row and show the mobile search row. */
+@media (min-width: 901px) {
+  /* show top search row, hide mobile duplicate */
+  .search-row.mobile-search-row {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+  .search-row:not(.mobile-search-row) {
+    display: flex !important;
+    visibility: visible !important;
+    height: auto !important;
+    pointer-events: auto !important;
+  }
+}
+
+@media (max-width: 900px) {
+  /* hide the top/primary search row on small screens */
+  .search-row:not(.mobile-search-row) {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+  /* show the mobile search row */
+  .search-row.mobile-search-row {
+    display: flex !important;
+    visibility: visible !important;
+    height: auto !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+    width: 100%;
+  }
+  /* ensure the inner search-centered stretches on mobile */
+  .search-row.mobile-search-row .search-centered { width: 100%; justify-content: center; }
+}
 
