@@ -31,6 +31,7 @@ export default function Footer() {
             <li><a href="https://www.lpsc.gov.in/terms.html" target="_blank" rel="noopener">Terms of Use</a></li>
             <li><a href="https://www.lpsc.gov.in/disclaimer.html" target="_blank" rel="noopener">Disclaimer</a></li>
             <li><a href="https://www.lpsc.gov.in/accessibility.html" target="_blank" rel="noopener">Accessibility</a></li>
+            <li><a href="/screen-reader">Screen Reader</a></li>
           </ul>
         </div>
 

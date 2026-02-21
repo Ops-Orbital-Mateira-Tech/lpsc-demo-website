@@ -375,6 +375,7 @@ html, body, #root {
 .branding .dept { font-size:0.85rem; color:#000; opacity:0.85; }
 .branding .emblem { width:48px; height:auto; }
 .branding .logo { width:92px; height:auto; }
+.branding .right-logos-containerr { display: flex; flex-direction: column; align-items: center}
 .branding .right-logos { display:flex; align-items:center; gap:0.5rem; }
 .branding .mini-logo { height:44px; width:auto; }
 .controls-row { display:flex; align-items:center; justify-content:space-between; gap:0.5rem; width:100%; padding:0.35rem 0; }
@@ -562,5 +563,28 @@ html.a11y-tooltips [data-tooltip]:focus-within::after {
   }
   /* ensure the inner search-centered stretches on mobile */
   .search-row.mobile-search-row .search-centered { width: 100%; justify-content: center; }
+}
+
+/* Right-logos: show the "up" logo only on mobile, the "down" logo only on desktop.
+   Also switch the layout of the container: column on mobile, row on desktop so the
+   LPSC logo and down logo sit side-by-side on larger screens. */
+.right-logos-container { display:flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.right-logos-container .right-logos { display: none; }
+.right-logos-container .logo { order: 2; }
+
+@media (max-width: 900px) {
+  .right-logos-container { flex-direction: column; }
+  .right-logos-container .right-logos.up { display: flex !important; order: 1; }
+  .right-logos-container .right-logos.down { display: none !important; }
+  .right-logos-container .logo { order: 2; }
+}
+
+@media (min-width: 901px) {
+  .right-logos-container { flex-direction: row; align-items: center; justify-content: flex-end; gap: 0.75rem; }
+  .right-logos-container .right-logos.up { display: none !important; }
+  .right-logos-container .right-logos.down { display: flex !important; order: 3; padding-left: 10px }
+  .right-logos-container .logo { order: 2; }
+  /* ensure logos align on single row and don't stack */
+  .right-logos-container .mini-logo { height: 60px; }
 }
 

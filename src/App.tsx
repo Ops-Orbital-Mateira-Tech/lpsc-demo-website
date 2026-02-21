@@ -26,6 +26,7 @@ import FormerDirectors from './pages/about/FormerDirectors';
 import WorkingHours from './pages/about/WorkingHours';
 import StudentsInternship from './pages/students/Internship';
 import StudentsProjects from './pages/students/Projects';
+import ScreenReader from './pages/ScreenReader';
 import { AccessibilityProvider } from './context/AccessibilityContext';
 import AccessibilityToolbar from './components/AccessibilityToolbar/AccessibilityToolbar';
 
@@ -89,6 +90,7 @@ export default function App() {
 
         <Route path="/students/internship" element={<StudentsInternship />} />
         <Route path="/students/projects" element={<StudentsProjects />} />
+        <Route path="/screen-reader" element={<ScreenReader />} />
         </Routes>
       </AccessibilityProvider>
     </>

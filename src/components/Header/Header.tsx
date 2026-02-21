@@ -59,19 +59,26 @@ export default function Header() {
               <div className="org">Liquid Propulsion Systems Centre</div>
               <div className="dept">Indian Space Research Organisation</div>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div className="right-logos" aria-hidden="true">
-                <img
-                  src="/images/DigitalIndia.png"
-                  alt="Digital India logo"
-                  className="mini-logo"
-                />
+            <div className="right-logos-container" >
+              <div className="right-logos up" aria-hidden="true">
+                  <img
+                    src="/images/DigitalIndia.png"
+                    alt="Digital India logo"
+                    className="mini-logo"
+                  />
               </div>
               <img
                 src="/images/LPSC-Logo.png"
                 alt="LPSC logo"
                 className="logo"
               />
+              <div className="right-logos down" aria-hidden="true">
+                <img
+                  src="/images/DigitalIndia.png"
+                  alt="Digital India logo"
+                  className="mini-logo"
+                />
+            </div>
             </div>
           </div>
         </div>
